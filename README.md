@@ -1,45 +1,47 @@
-🎓 GradESEI
-Sistema de gestión de actos de graduación para la Escuela Superior de Ingeniería Informática (ESEI) de la Universidad de Vigo.
+# 🎓 GradESEI
 
-📌 Descripción
-GradESEI es una aplicación web orientada a los estudiantes de la ESEI que facilita su inscripción, gestión de datos personales y consulta de información relativa al acto de graduación.
+**Sistema de gestión de actos de graduación** para la Escuela Superior de Ingeniería Informática (ESEI) de la Universidad de Vigo.
+
+---
+
+## 📌 Descripción
+
+GradESEI es una aplicación web orientada a los estudiantes de la ESEI que facilita su **inscripción, gestión de datos personales y consulta de información** relativa al acto de graduación.  
 
 Entre sus funcionalidades destacan:
 
-Registro e inicio de sesión seguro.
+- Registro e inicio de sesión seguro.
+- Modificación de datos personales.
+- Información detallada del acto según la titulación.
+- Gestión de acompañantes.
+- Recuperación de contraseña vía correo electrónico.
+- Panel de administración *(en desarrollo)*.
 
-Modificación de datos personales.
+---
 
-Información detallada del acto según la titulación.
+## 🚀 Funcionalidades clave
 
-Gestión de acompañantes.
+✅ Registro y login con correo institucional  
+✅ Edición de datos personales y número de acompañantes  
+✅ Visualización del acto de graduación asignado  
+✅ Soporte para recuperación y cambio de contraseña  
+🚧 Panel de administración próximamente disponible  
 
-Recuperación de contraseña vía correo electrónico.
+---
 
-Panel de administración (en desarrollo).
+## 🛠️ Tecnologías utilizadas
 
-🚀 Funcionalidades clave
-✅ Registro y login con correo institucional
-✅ Edición de datos personales y número de acompañantes
-✅ Visualización del acto de graduación asignado
-✅ Soporte para recuperación y cambio de contraseña
-🚧 Panel de administración próximamente disponible
+- **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
+- **Backend:** Node.js + Express.js
+- **Base de datos:** MySQL
+- **Email:** Nodemailer (SMTP)
+- **Autenticación:** JWT (JSON Web Tokens)
 
-🛠️ Tecnologías utilizadas
-Frontend: HTML5, CSS3, JavaScript (Vanilla)
+---
 
-Backend: Node.js + Express.js
+## 📁 Estructura del proyecto
 
-Base de datos: MySQL
-
-Email: Nodemailer (SMTP)
-
-Autenticación: JWT (JSON Web Tokens)
-
-📁 Estructura del proyecto
-pgsql
-Copiar
-Editar
+```
 gradesei/
 │
 ├── public/
@@ -64,62 +66,67 @@ gradesei/
 │   └── reset.sql
 │
 └── README.md
-🧪 Instalación y ejecución
-Clona el repositorio
+```
 
-bash
-Copiar
-Editar
-git clone https://github.com/tuusuario/gradesei.git
-cd gradesei
-Instala las dependencias
+---
 
-bash
-Copiar
-Editar
-npm install
-Prepara la base de datos
+## 🧪 Instalación y ejecución
 
-Crea la base de datos graduacion y ejecuta los scripts en:
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/tuusuario/gradesei.git
+   cd gradesei
+   ```
 
-pgsql
-Copiar
-Editar
-db/init.sql
-db/insert.sql
-Configura el correo SMTP
+2. **Instala las dependencias**
+   ```bash
+   npm install
+   ```
 
-En server/controllers/alumnosController.js, reemplaza con tus credenciales de Gmail (usa contraseña de aplicación).
+3. **Prepara la base de datos**
+   - Crea la base de datos `graduacion` y ejecuta los scripts en:
+     ```
+     db/init.sql
+     db/insert.sql
+     ```
 
-Inicia el servidor
+4. **Configura el correo SMTP**
+   - En `server/controllers/alumnosController.js`, reemplaza con tus credenciales de Gmail (usa contraseña de aplicación).
 
-bash
-Copiar
-Editar
-node server/server.js
-Abre la aplicación
+5. **Inicia el servidor**
+   ```bash
+   node server/server.js
+   ```
 
-Navega a: http://localhost:3000/alumno/login.html
+6. **Abre la aplicación**
+   - Navega a: [http://localhost:3000/alumno/login.html](http://localhost:3000/alumno/login.html)
 
-🔐 Seguridad
-Solo se permite registro con correos @esei.uvigo.gal o @alumnado.uvigo.gal.
+---
 
-Las contraseñas se almacenan cifradas usando bcrypt.
+## 🔐 Seguridad
 
-Los flujos de recuperación y cambio de contraseña están aislados y protegidos.
+- Solo se permite registro con correos `@esei.uvigo.gal` o `@alumnado.uvigo.gal`.
+- Las contraseñas se almacenan cifradas usando **bcrypt**.
+- Los flujos de recuperación y cambio de contraseña están aislados y protegidos.
 
-🔄 Recuperación de contraseña
-Accede a la pantalla de login.
+---
 
-Pulsa en "¿Has olvidado tu contraseña?".
+## 🔄 Recuperación de contraseña
 
-Introduce tu correo institucional.
+1. Accede a la pantalla de login.
+2. Pulsa en "¿Has olvidado tu contraseña?".
+3. Introduce tu correo institucional.
+4. Recibirás un enlace temporal para restablecerla.
 
-Recibirás un enlace temporal para restablecerla.
+---
 
-📜 Licencia
-Este proyecto está licenciado bajo la licencia MIT.
+## 📜 Licencia
 
-👨‍💻 Autor
-Pablo
-Escuela Superior de Ingeniería Informática – UVigo
+Este proyecto está licenciado bajo la licencia **MIT**.
+
+---
+
+## 👨‍💻 Autor
+
+**Pablo**  
+Escuela Superior de Ingeniería Informática – [UVigo](https://esei.uvigo.es)
