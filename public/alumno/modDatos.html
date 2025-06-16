@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modificar datos</title>
+  <link rel="stylesheet" href="/css/modDatos.css">
+  <script src="/js/modDatos.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Modificar mis datos</h1>
+    <form id="modificar-form">
+
+      <label for="dni">DNI</label>
+      <input type="text" id="dni" required>
+
+      <label for="correo">Correo institucional</label>
+      <input type="text" id="correo" required>
+
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" required>
+
+      <label for="apellidos">Apellidos</label>
+      <input type="text" id="apellidos" required>
+
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" required>
+
+      <label for="titulacion">Titulación</label>
+      <select id="titulacion" required></select>
+
+      <label for="acompanantes">Número de acompañantes</label>
+      <input type="number" id="acompanantes" min="0" required>
+
+      <button type="submit">Guardar cambios</button>
+    </form>
+  </div>
+</body>
+</html>

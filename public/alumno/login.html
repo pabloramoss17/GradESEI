@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Alumno – GradESEI</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <img src="/logo.jpg" alt="Logo GradESEI" class="logo">
+    <h2>Inicio de sesión</h2>
+    <p>Introduce DNI y contraseña para acceder</p>
+    <form id="loginForm">
+      <input type="text" id="dni" name="dni" placeholder="DNI" required>
+      <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    <p class="register-text">¿No estás registrado? <a href="/alumno/registro.html">Regístrate</a></p>
+    <p class="register-text">¿Has olvidado tu contraseña? <a href="/alumno/recuperar.html">Recupérala aquí</a></p>
+  </div>
+  <script src="/js/alumnoLogin.js"></script>
+</body>
+</html>

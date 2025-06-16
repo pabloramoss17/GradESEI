@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Alumno – GradESEI</title>
+  <link rel="stylesheet" href="/css/registro.css">
+</head>
+<body>
+  <div class="registro-container">
+    <img src="/logo.jpg" alt="Logo GradESEI" class="logo">
+    <h2>Regístrate</h2>
+    <p>Introduce los datos solicitados a continuación para registrarte en la graduación 24/25</p>
+    <form id="registroForm">
+      <input type="email" id="correo" name="correo" placeholder="Correo institucional" required>
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+      <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
+      <input type="text" id="dni" name="dni" placeholder="DNI" required>
+      <select id="titulacion" name="titulacion" required>
+        <option value="">Selecciona una titulación</option>
+      </select>
+      <input type="number" id="acompanantes" name="acompanantes" placeholder="Número de acompañantes" min="0" required>
+      <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+      <input type="password" id="repetir" name="repetir" placeholder="Repita la contraseña" required>
+      <button type="submit">Registrarse</button>
+    </form>
+    <p class="login-text">¿Ya estás registrado? <a href="/alumno/login.html">Inicia sesión</a></p>
+  </div>
+  <script src="/js/registroAlumno.js"></script>
+</body>
+</html>

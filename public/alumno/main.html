@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información Personal</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="/js/main.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Menú lateral con logo -->
+    <div class="menu">
+      <img src="/logo.jpg" alt="Logo GradESEI">
+      <ul>
+        <li><a href="main.html">Información personal</a></li>
+        <li><a href="infoActo.html">Información del acto</a></li>
+      </ul>
+      <a href="#" class="logout-btn">Cerrar sesión</a>
+    </div>
+
+    <!-- Información personal en 2 columnas -->
+    <div class="personal-info">
+    <div class="info-wrapper">
+    <h1>Información personal</h1>
+    <form id="info-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="correo">Correo institucional</label>
+          <input type="text" id="correo" disabled>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" disabled>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" disabled>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" disabled>
+        </div>
+        <div class="form-group">
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" disabled>
+        </div>
+        <div class="form-group">
+          <label for="titulacion">Titulación</label>
+          <input type="text" id="titulacion" disabled>
+        </div>
+        <div class="form-group form-group-center">
+          <label for="acompanantes">Número de acompañantes</label>
+          <input type="text" id="acompanantes" disabled>
+        </div>
+      </div>
+    </form>
+    <a id="modificar-datos" href="modDatos.html">Modificar datos</a>
+  </div>
+</div>
+</body>
+</html>

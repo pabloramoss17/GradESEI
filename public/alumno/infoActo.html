@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información del Acto</title>
+  <link rel="stylesheet" href="/css/infoActo.css">
+  <script src="/js/infoActo.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Menú lateral con logo -->
+    <div class="menu">
+      <img src="/logo.jpg" alt="Logo GradESEI">
+      <ul>
+        <li><a href="main.html">Información personal</a></li>
+        <li><a href="infoActo.html" class="active">Información del acto</a></li>
+      </ul>
+      <a href="#" class="logout-btn">Cerrar sesión</a>
+    </div>
+
+    <!-- Información del acto de graduación -->
+    <div class="acto-info">
+      <div class="info-wrapper">
+        <h1>Acto de Graduación</h1>
+        <form id="acto-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="acto-nombre">Nombre del acto</label>
+              <input type="text" id="acto-nombre" disabled>
+            </div>
+            <div class="form-group">
+              <label for="acto-fecha">Fecha</label>
+              <input type="text" id="acto-fecha" disabled>
+            </div>
+            <div class="form-group">
+              <label for="salon-nombre">Salón</label>
+              <input type="text" id="salon-nombre" disabled>
+            </div>
+            <div class="form-group">
+              <label for="salon-aforo">Aforo total</label>
+              <input type="text" id="salon-aforo" disabled>
+            </div>
+            <div class="form-group form-group-center">
+              <label for="acompanantes-concedidos">Acompañantes concedidos</label>
+              <input type="text" id="acompanantes-concedidos" disabled>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

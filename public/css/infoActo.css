@@ -1,0 +1,42 @@
+@import url('main.css');
+
+.acto-info {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.info-wrapper h1 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 60px;
+  max-width: 1000px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  padding: 14px;
+  font-size: 17px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f4f4f4;
+}
