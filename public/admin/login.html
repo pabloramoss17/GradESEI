@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Administrador – GradESEI</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <div class="login-container">
+    <img src="/logo.jpg" alt="Logo GradESEI" class="logo">
+    <h2>Inicio de sesión (Administrador)</h2>
+    <p>Introduce tu login y contraseña para acceder</p>
+    <form id="adminLoginForm">
+      <input type="text" id="login" name="login" placeholder="Login" required>
+      <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    <p class="register-text">¿Has olvidado tu contraseña? <a href="/admin/recuperar.html">Recupérala aquí</a></p>
+  </div>
+  <script src="/js/adminLogin.js"></script>
+</body>
+</html>

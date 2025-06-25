@@ -43,6 +43,5 @@ VALUES
  '$2a$10$Uvhd05Am0XRSbZjeDxoYQOC5KhMiF7GvFZK4vFoMFj/UsECZyL84W', 1, 1, 0);
 
 -- Insertar administrador
-INSERT INTO administradores (nombre, correo, password)
-VALUES ('Administrador', 'admin@esei.uvigo.es', 'adminpass');
-
+INSERT INTO administradores (login, correo, password)
+VALUES ('Administrador', 'admin@esei.uvigo.es', '$2b$10$QT9P6iM6MKbBErzMSJ8smOBQGlS16jFSPBQ28v1HwrfW.5YeZCCZW');

@@ -53,7 +53,7 @@ CREATE TABLE alumnos (
 
 CREATE TABLE administradores (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    login VARCHAR(100) NOT NULL,
     correo VARCHAR(150) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL
 );

@@ -1,0 +1,87 @@
+/* Usa main.css para la base y añade solo lo específico aquí */
+
+.admin-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
+}
+
+.admin-content h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.titulaciones-list {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+}
+
+.titulacion-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.titulacion-info {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f4f4f4;
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 22px;
+  color: #222;
+  transition: color 0.2s;
+}
+
+.icon-btn:hover {
+  color: #007bff;
+}
+
+.add-link {
+  color: #007bff;
+  text-decoration: none;      /* Elimina el subrayado */
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;             /* Ocupa toda la línea */
+  text-align: center;         /* Centra el texto */
+}
+
+.add-link:hover {
+  color: #0056b3;
+}
+
+/* Menú lateral admin: logo más grande y botones más anchos */
+.menu img {
+  width: 160px;
+  margin-bottom: 30px;
+}
+.menu ul {
+  margin-bottom: 40px;
+}
+.menu li {
+  width: 100%;
+}
+.menu a {
+  font-size: 16px;
+}
+
+#add-titulacion-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
