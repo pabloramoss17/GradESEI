@@ -4,12 +4,11 @@ const db = require('../db');
 
 // Obtener todas las titulaciones
 router.get('/', (req, res) => {
-  db.query('SELECT id, nombre FROM titulaciones', (err, results) => {
+  db.query('SELECT id, nombre, siglas FROM titulaciones', (err, results) => {
     if (err) {
       console.error('Error al obtener titulaciones:', err.message);
       return res.status(500).json({ error: 'Error interno del servidor' });
     }
-
     res.json(results);
   });
 });
@@ -17,7 +16,7 @@ router.get('/', (req, res) => {
 // Obtener titulación por ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  const query = 'SELECT id, nombre, graduacion_id FROM titulaciones WHERE id = ?';
+  const query = 'SELECT id, nombre, siglas, graduacion_id FROM titulaciones WHERE id = ?';
   db.query(query, [id], (err, results) => {
     if (err) {
       console.error('Error al obtener titulación:', err.message);
@@ -33,11 +32,11 @@ router.get('/:id', (req, res) => {
 // Modificar titulación por ID
 router.put('/:id', (req, res) => {
   const id = req.params.id;
-  const { nombre } = req.body;
-  if (!nombre) {
-    return res.status(400).json({ error: 'El nombre es obligatorio' });
+  const { nombre, siglas } = req.body;
+  if (!nombre || !siglas) {
+    return res.status(400).json({ error: 'El nombre y las siglas son obligatorios' });
   }
-  db.query('UPDATE titulaciones SET nombre = ? WHERE id = ?', [nombre, id], (err, result) => {
+  db.query('UPDATE titulaciones SET nombre = ?, siglas = ? WHERE id = ?', [nombre, siglas, id], (err, result) => {
     if (err) {
       console.error('Error al modificar titulación:', err.message);
       return res.status(500).json({ error: 'Error interno del servidor' });
@@ -60,14 +59,14 @@ router.delete('/:id', (req, res) => {
 
 // Crear nueva titulación
 router.post('/', (req, res) => {
-  const { nombre, graduacion_id } = req.body;
-  if (!nombre || !graduacion_id) {
-    return res.status(400).json({ error: 'Nombre y graduacion_id son obligatorios' });
+  const { nombre, siglas } = req.body;
+  if (!nombre || !siglas) {
+    return res.status(400).json({ error: 'Nombre y siglas son obligatorios' });
   }
-  db.query('INSERT INTO titulaciones (nombre, graduacion_id) VALUES (?, ?)', [nombre, graduacion_id], (err, result) => {
+  db.query('INSERT INTO titulaciones (nombre, siglas) VALUES (?, ?)', [nombre, siglas], (err, result) => {
     if (err) {
       if (err.code === 'ER_DUP_ENTRY') {
-        return res.status(400).json({ error: 'Ya existe una titulación con ese nombre' });
+        return res.status(400).json({ error: 'Ya existe una titulación con ese nombre o siglas' });
       }
       console.error('Error al crear titulación:', err.message);
       return res.status(500).json({ error: 'Error interno del servidor' });

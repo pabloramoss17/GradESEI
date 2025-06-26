@@ -32,7 +32,8 @@ CREATE TABLE zonas (
 CREATE TABLE titulaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL UNIQUE,
-    graduacion_id INT NOT NULL,
+    siglas VARCHAR(20) NOT NULL,
+    graduacion_id INT NULL,
     FOREIGN KEY (graduacion_id) REFERENCES graduaciones(id) ON DELETE CASCADE
 );
 

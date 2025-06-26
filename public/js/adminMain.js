@@ -25,11 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
           const row = document.createElement('div');
           row.className = 'titulacion-row';
 
-          const input = document.createElement('input');
-          input.className = 'titulacion-info';
-          input.type = 'text';
-          input.value = titulacion.nombre;
-          input.disabled = true;
+          // Campo nombre
+          const inputNombre = document.createElement('input');
+          inputNombre.className = 'titulacion-info';
+          inputNombre.type = 'text';
+          inputNombre.value = titulacion.nombre;
+          inputNombre.disabled = true;
+
+          // Campo siglas
+          const inputSiglas = document.createElement('input');
+          inputSiglas.className = 'titulacion-info';
+          inputSiglas.type = 'text';
+          inputSiglas.value = titulacion.siglas;
+          inputSiglas.disabled = true;
+          inputSiglas.style.maxWidth = '120px';
+          inputSiglas.style.marginLeft = '8px';
 
           // Botón editar
           const editBtn = document.createElement('button');
@@ -37,35 +47,36 @@ document.addEventListener('DOMContentLoaded', () => {
           editBtn.title = 'Editar';
           editBtn.innerHTML = '&#9998;';
           editBtn.addEventListener('click', async () => {
-            // Habilita edición
-            input.disabled = false;
-            input.focus();
+            inputNombre.disabled = false;
+            inputSiglas.disabled = false;
+            inputNombre.focus();
             editBtn.style.display = 'none';
 
             // Botón guardar
             const saveBtn = document.createElement('button');
             saveBtn.className = 'icon-btn';
             saveBtn.title = 'Guardar';
-            saveBtn.innerHTML = '&#128190;'; // icono de guardar
+            saveBtn.innerHTML = '&#128190;';
             row.insertBefore(saveBtn, deleteBtn);
 
             saveBtn.addEventListener('click', async () => {
-              const nuevoNombre = input.value.trim();
-              if (!nuevoNombre) {
-                alert('El nombre no puede estar vacío');
+              const nuevoNombre = inputNombre.value.trim();
+              const nuevasSiglas = inputSiglas.value.trim();
+              if (!nuevoNombre || !nuevasSiglas) {
+                alert('El nombre y las siglas no pueden estar vacíos');
                 return;
               }
-              // Llama al endpoint para modificar
               const res = await fetch(`/api/titulaciones/${titulacion.id}`, {
                 method: 'PUT',
                 headers: {
                   'Content-Type': 'application/json',
                   'Authorization': localStorage.getItem('adminToken')
                 },
-                body: JSON.stringify({ nombre: nuevoNombre })
+                body: JSON.stringify({ nombre: nuevoNombre, siglas: nuevasSiglas })
               });
               if (res.ok) {
-                input.disabled = true;
+                inputNombre.disabled = true;
+                inputSiglas.disabled = true;
                 editBtn.style.display = '';
                 saveBtn.remove();
                 cargarTitulaciones();
@@ -94,7 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
 
-          row.appendChild(input);
+          row.appendChild(inputNombre);
+          row.appendChild(inputSiglas);
           row.appendChild(editBtn);
           row.appendChild(deleteBtn);
 
@@ -113,14 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mostrar formulario de añadir titulación
   const addLink = document.querySelector('.add-link');
   const addForm = document.getElementById('add-titulacion-form');
-  const addInput = document.getElementById('nuevo-nombre-titulacion');
+  const addInputNombre = document.getElementById('nuevo-nombre-titulacion');
+  const addInputSiglas = document.getElementById('nuevas-siglas-titulacion');
   const cancelarBtn = document.getElementById('cancelar-add-titulacion');
 
   addLink.addEventListener('click', (e) => {
     e.preventDefault();
     addForm.style.display = 'flex';
-    addInput.value = '';
-    addInput.focus();
+    addInputNombre.value = '';
+    addInputSiglas.value = '';
+    addInputNombre.focus();
     addLink.style.display = 'none';
   });
 
@@ -132,20 +146,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const nombre = addInput.value.trim();
-    if (!nombre) {
-      alert('El nombre no puede estar vacío');
+    const nombre = addInputNombre.value.trim();
+    const siglas = addInputSiglas.value.trim();
+    if (!nombre || !siglas) {
+      alert('El nombre y las siglas no pueden estar vacíos');
       return;
     }
     try {
-      // Puedes pedir el graduacion_id al usuario o usar uno por defecto (aquí se usa 1)
       const res = await fetch('/api/titulaciones', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('adminToken')
         },
-        body: JSON.stringify({ nombre, graduacion_id: 1 })
+        body: JSON.stringify({ nombre, siglas }) // <--- solo nombre y siglas
       });
       if (res.ok) {
         addForm.style.display = 'none';

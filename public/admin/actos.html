@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de actos de graduación – Admin GradESEI</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/adminActos.css">
+  <link rel="stylesheet" href="/css/adminMain.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menú lateral -->
+    <div class="menu">
+      <img src="/logo.jpg" alt="Logo GradESEI">
+      <ul>
+        <li><a href="main.html">Gestión de titulaciones</a></li>
+        <li><a href="actos.html" class="active">Gestión de actos de graduación</a></li>
+        <li><a href="aforo.html">Gestión de aforo</a></li>
+        <li><a href="documentos.html">Generar documentos</a></li>
+      </ul>
+      <a href="#" class="logout-btn">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="admin-content">
+      <h1>Gestión de actos de graduación</h1>
+      <div class="actos-list">
+        <div style="font-size:20px; margin-bottom:18px;">Actos actuales:</div>
+        <!-- Las filas de actos se insertan aquí por JS -->
+        <a class="add-link" href="#">Añadir acto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para editar/crear acto -->
+  <div class="modal-bg" id="modal-bg">
+    <div class="modal" id="modal-form">
+      <form id="acto-form">
+        <label for="acto-nombre">Nombre</label>
+        <input type="text" id="acto-nombre" required>
+
+        <label for="acto-fecha">Fecha</label>
+        <input type="date" id="acto-fecha" required>
+
+        <label for="acto-titulaciones">Titulaciones asociadas</label>
+        <div id="acto-titulaciones-checkboxes" class="checkbox-list"></div>
+
+        <label>
+          <input type="checkbox" id="acto-bloqueado">
+          Registro bloqueado
+        </label>
+        <label>
+          <input type="checkbox" id="acto-segundo-plazo">
+          Segundo plazo activado
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="icon-btn" title="Guardar">&#128190;</button>
+          <button type="button" class="icon-btn" id="cancelar-modal" title="Cancelar">&#10006;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/adminActos.js"></script>
+</body>
+</html>

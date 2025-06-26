@@ -26,8 +26,8 @@ VALUES
 ('Zona C', 100, 100, 0, 1);
 
 -- Insertar titulación asociada a la graduación
-INSERT INTO titulaciones (nombre, graduacion_id)
-VALUES ('Enxeñaría Informática', 1);
+INSERT INTO titulaciones (nombre, siglas, graduacion_id)
+VALUES ('Enxeñaría Informática', 'EI', 1);
 
 -- Insertar alumnos de prueba con campos actualizados
 -- Contraseña ya encriptada (hash de "Contrasena123")

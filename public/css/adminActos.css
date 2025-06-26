@@ -1,0 +1,174 @@
+.admin-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
+  overflow: hidden; /* Evita doble scroll */
+  height: 100vh;
+}
+
+.actos-list, .titulaciones-list {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  overflow-y: auto;
+  max-height: 70vh; /* Ajusta según tu preferencia */
+}
+
+.acto-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.acto-info {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f4f4f4;
+  font-size: 16px;
+  margin-right: 16px;
+  min-width: 0;
+  text-align: left;
+  white-space: pre-line;
+  line-height: 1.7;
+}
+
+.acto-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.filtrar-link {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 8px 0 0 0;
+  display: block;
+  text-align: left;
+}
+
+.filtrar-link:hover {
+  color: #0056b3;
+}
+
+.add-link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+
+.add-link:hover {
+  color: #0056b3;
+}
+
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px 24px 20px 24px;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+}
+
+.modal label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.modal input[type="text"],
+.modal input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.modal select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.modal .modal-actions {
+  margin-top: 18px;
+  text-align: right;
+}
+
+.modal .icon-btn {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.modal input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.checkbox-list label {
+  cursor: pointer;
+  font-weight: normal;
+  margin-bottom: 2px;
+}
+
+.checkbox-list input[type="checkbox"] {
+  accent-color: #007bff;
+  margin-right: 6px;
+  transform: scale(1.2);
+}
+
+/* Panel lateral fijo */
+.menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  background: #f4f4f4;
+  border-right: 1px solid #ccc;
+  z-index: 100;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ajusta el contenido principal para dejar espacio al menú */
+.container {
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+}
+
+@media (max-width: 700px) {
+  .actos-list { max-width: 98vw; }
+  .modal { min-width: 0; }
+}
