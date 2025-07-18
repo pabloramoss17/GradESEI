@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de aforo – Admin GradESEI</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/adminMain.css">
+  <link rel="stylesheet" href="/css/adminAforo.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Menú lateral -->
+    <div class="menu">
+      <img src="/logo.jpg" alt="Logo GradESEI">
+      <ul>
+        <li><a href="main.html">Gestión de titulaciones</a></li>
+        <li><a href="actos.html">Gestión de actos de graduación</a></li>
+        <li><a href="aforo.html" class="active">Gestión de aforo</a></li>
+        <li><a href="documentos.html">Generar documentos</a></li>
+      </ul>
+      <a href="#" class="logout-btn">Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="admin-content">
+      <h1>Gestión de aforo</h1>
+      <div class="salones-list" id="salones-list"></div>
+      <a class="add-link" href="#" id="add-salon-link">Añadir salón</a>
+    </div>
+  </div>
+
+  <!-- Modal para crear/editar salón -->
+  <div class="modal-bg" id="modal-salon-bg">
+    <div class="modal" id="modal-salon-form">
+      <form id="salon-form">
+        <label for="salon-nombre">Nombre</label>
+        <input type="text" id="salon-nombre" required>
+
+        <label for="salon-aforo">Aforo total</label>
+        <input type="number" id="salon-aforo" min="1" required>
+
+        <label for="salon-graduacion">Graduación asociada</label>
+        <select id="salon-graduacion" required></select>
+        <div id="salon-fecha-graduacion" style="margin-bottom:10px; font-weight:bold;"></div>
+
+        <div class="modal-actions">
+          <button type="submit" class="icon-btn" title="Guardar">&#128190;</button>
+          <button type="button" class="icon-btn" id="cancelar-salon-modal" title="Cancelar">&#10006;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para crear/editar zona -->
+  <div class="modal-bg" id="modal-zona-bg" style="display:none;">
+    <div class="modal" id="modal-zona-form">
+      <form id="zona-form">
+        <label for="zona-nombre">Nombre de la zona</label>
+        <input type="text" id="zona-nombre" required>
+
+        <label for="zona-butacas">Butacas reservadas</label>
+        <input type="number" id="zona-butacas" min="1" required>
+
+        <div class="modal-actions">
+          <button type="submit" class="icon-btn" title="Guardar">&#128190;</button>
+          <button type="button" class="icon-btn" id="cancelar-zona-modal" title="Cancelar">&#10006;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/adminAforo.js"></script>
+</body>
+</html>

@@ -56,6 +56,31 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // --- NUEVO: Comprobar registro_bloqueado en la graduación antes de registrar ---
+    try {
+      // 1. Obtener la titulación
+      const resTitulacion = await fetch(`/api/titulaciones/${titulacion}`);
+      const datosTitulacion = await resTitulacion.json();
+      if (!datosTitulacion.graduacion_id) {
+        alert("No hay acto de graduación asociado a esta titulación. No es posible registrarse.");
+        return;
+      }
+
+      // 2. Obtener la graduación asociada
+      const resGraduacion = await fetch(`/api/graduaciones/${datosTitulacion.graduacion_id}`);
+      const datosGraduacion = await resGraduacion.json();
+      const graduacion = datosGraduacion.graduacion || datosGraduacion; // según cómo devuelvas el objeto
+
+      // 3. Comprobar si el registro está bloqueado
+      if (graduacion.registro_bloqueado) {
+        alert("El registro está bloqueado para esta titulación. No es posible registrarse.");
+        return;
+      }
+    } catch (err) {
+      alert("No se pudo comprobar el estado de la titulación. Inténtalo más tarde.");
+      return;
+    }
+
     try {
       const res = await fetch("/api/alumnos/registro", {
         method: "POST",

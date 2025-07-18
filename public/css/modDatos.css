@@ -75,3 +75,12 @@ button:hover {
   color: #007bff;
   text-decoration: underline;
 }
+
+.bloqueo-msg {
+  margin-top: 18px;
+  color: #b00;
+  font-weight: bold;
+  background: #ffeaea;
+  border-radius: 6px;
+  padding: 10px;
+}

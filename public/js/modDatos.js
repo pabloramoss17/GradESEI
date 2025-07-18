@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     method: 'GET',
     headers: { 'Authorization': getToken() }
   })
-  .then(res => res.json())
-  .then(data => {
+  .then(async res => {
+    const data = await res.json();
     if (data.alumno) {
       document.getElementById('dni').value = data.alumno.DNI;
       document.getElementById('correo').value = data.alumno.correo;
@@ -42,6 +42,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('telefono').value = data.alumno.telefono;
       document.getElementById('acompanantes').value = data.alumno.acompanantes_solicitados;
       document.getElementById('titulacion').value = data.alumno.titulacion_id;
+
+      // --- NUEVO: Consulta la titulación para obtener graduacion_id ---
+      const resTitulacion = await fetch(`/api/titulaciones/${data.alumno.titulacion_id}`);
+      const datosTitulacion = await resTitulacion.json();
+      const graduacion_id = datosTitulacion.graduacion_id;
+
+      // Consulta registro_bloqueado de la graduación asociada
+      if (graduacion_id) {
+        const resGrad = await fetch(`/api/graduaciones/${graduacion_id}`);
+        const gradData = await resGrad.json();
+        const graduacion = gradData.graduacion || gradData;
+        if (graduacion.registro_bloqueado) {
+          // Deshabilita todos los campos y el botón de guardar, pero NO el botón volver atrás
+          document.querySelectorAll('#modificar-form input, #modificar-form select, #modificar-form button[type="submit"]').forEach(el => {
+            el.disabled = true;
+          });
+          // Muestra mensaje
+          const msg = document.createElement('div');
+          msg.className = 'bloqueo-msg';
+          msg.textContent = 'No es posible modificar tus datos porque el registro está bloqueado para tu titulación.';
+          document.getElementById('modificar-form').appendChild(msg);
+        }
+      }
+      // Si no hay graduación asociada, se permite modificar los datos (no se hace nada)
     }
   })
   .catch(err => {
@@ -91,4 +115,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error(err);
     }
   });
+
+  // Botón volver atrás
+  const volverBtn = document.getElementById('volver-btn');
+  if (volverBtn) {
+    volverBtn.addEventListener('click', () => {
+      window.location.href = '/alumno/main.html';
+    });
+  }
 });

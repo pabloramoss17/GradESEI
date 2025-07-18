@@ -116,12 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (!res.ok) return alert('Error al obtener alumnos');
     const alumnos = await res.json();
-    // Generar CSV
-    let csv = 'DNI,Nombre,Apellidos,Correo,Titulación\n';
+    // Generar CSV con BOM UTF-8 y nombre de titulación
+    let csv = '\uFEFFDNI,Nombre,Apellidos,Correo,Titulación\n';
     alumnos.forEach(a => {
-      csv += `${a.DNI},"${a.nombre}","${a.apellidos}","${a.correo}","${a.titulacion_siglas}"\n`;
+      csv += `${a.DNI},"${a.nombre}","${a.apellidos}","${a.correo}","${a.titulacion_nombre}"\n`;
     });
-    const blob = new Blob([csv], { type: 'text/csv' });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

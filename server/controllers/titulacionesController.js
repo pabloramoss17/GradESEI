@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ error: 'Titulación no encontrada' });
     }
-    res.json({ titulacion: results[0] });
+    res.json(results[0]);
   });
 });
 

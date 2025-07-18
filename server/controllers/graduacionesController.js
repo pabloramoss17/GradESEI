@@ -5,7 +5,7 @@ const db = require('../db');
 // Obtener graduación por ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  const query = 'SELECT id, nombre, fecha FROM graduaciones WHERE id = ?';
+  const query = 'SELECT id, nombre, fecha, registro_bloqueado, segundo_plazo_activado FROM graduaciones WHERE id = ?';
   db.query(query, [id], (err, results) => {
     if (err) {
       console.error('Error al obtener graduación:', err.message);
@@ -152,11 +152,11 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/alumnos', (req, res) => {
   const id = req.params.id;
   const query = `
-    SELECT a.DNI, a.nombre, a.apellidos, a.correo, t.siglas AS titulacion_siglas
+    SELECT a.DNI, a.nombre, a.apellidos, a.correo, t.nombre AS titulacion_nombre
     FROM alumnos a
     JOIN titulaciones t ON a.titulacion_id = t.id
     WHERE t.graduacion_id = ?
-    ORDER BY t.siglas, a.apellidos, a.nombre
+    ORDER BY t.nombre, a.apellidos, a.nombre
   `;
   db.query(query, [id], (err, results) => {
     if (err) {
@@ -165,6 +165,23 @@ router.get('/:id/alumnos', (req, res) => {
     }
     res.json(results);
   });
+});
+
+// Contar alumnos de todas las titulaciones asociadas a una graduación
+router.get('/:id/alumnos/count', (req, res) => {
+  const graduacion_id = req.params.id;
+  // Obtiene todas las titulaciones asociadas a la graduación
+  db.query(
+    `SELECT a.DNI
+     FROM alumnos a
+     JOIN titulaciones t ON a.titulacion_id = t.id
+     WHERE t.graduacion_id = ?`,
+    [graduacion_id],
+    (err, results) => {
+      if (err) return res.status(500).json({ error: 'Error interno' });
+      res.json({ count: results.length });
+    }
+  );
 });
 
 module.exports = router;

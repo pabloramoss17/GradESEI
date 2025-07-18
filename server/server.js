@@ -19,6 +19,7 @@ const adminRoutes = require('./controllers/adminController');
 const graduacionesRoutes = require('./controllers/graduacionesController');
 const titulacionesRoutes = require('./controllers/titulacionesController');
 const salonesRoutes = require('./controllers/salonesController');
+const zonasRoutes = require('./controllers/zonasController');
 
 const PORT = 3000;
 
@@ -33,6 +34,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/graduaciones', graduacionesRoutes);
 app.use('/api/titulaciones', titulacionesRoutes);
 app.use('/api/salones', salonesRoutes);
+app.use('/api/zonas', zonasRoutes);
 
 // Iniciar servidor
 app.listen(PORT, () => {

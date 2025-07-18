@@ -14,6 +14,8 @@ CREATE TABLE salones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(200) NOT NULL,
     aforo_total INT NOT NULL,
+    aforo_libre INT NOT NULL,
+    aforo_ocupado INT NOT NULL,
     fecha_acto DATE NOT NULL,
     graduacion_id INT,
     FOREIGN KEY (graduacion_id) REFERENCES graduaciones(id) ON DELETE SET NULL
@@ -22,9 +24,7 @@ CREATE TABLE salones (
 CREATE TABLE zonas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(200) NOT NULL,
-    butacas_totales INT NOT NULL,
-    butacas_libres INT NOT NULL,
-    butacas_ocupadas INT NOT NULL,
+    butacas_reservadas INT NOT NULL,
     salon_id INT NOT NULL,
     FOREIGN KEY (salon_id) REFERENCES salones(id) ON DELETE CASCADE
 );

@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('acto-fecha').value = fechaFormateada;
 
     document.getElementById('salon-nombre').value = salon ? salon.nombre : '';
-    document.getElementById('salon-aforo').value = salon ? salon.aforo_total : '';
     document.getElementById('acompanantes-concedidos').value = dataAlumno.alumno.acompanantes_concedidos ?? '';
+    document.getElementById('acompanantes-concedidos-segunda').value = dataAlumno.alumno.acompanantes_concedidos_segunda ?? '';
 
   } catch (err) {
     alert('Error al cargar la información del acto');
