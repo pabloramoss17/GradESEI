@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Obtener datos de la titulación
     const resTitulacion = await fetch(`/api/titulaciones/${dataAlumno.alumno.titulacion_id}`);
     const titulacion = await resTitulacion.json();
-    if (!titulacion.titulacion) throw new Error('No se pudo obtener la titulación');
+    if (!titulacion) throw new Error('No se pudo obtener la titulación');
 
     // 3. Obtener datos del acto de graduación
-    const resActo = await fetch(`/api/graduaciones/${titulacion.titulacion.graduacion_id}`);
+    const resActo = await fetch(`/api/graduaciones/${titulacion.graduacion_id}`);
     const acto = await resActo.json();
     if (!acto.graduacion) throw new Error('No se pudo obtener el acto de graduación');
 
