@@ -10,29 +10,26 @@
 </head>
 <body>
   <div class="container">
-    <!-- Menú lateral -->
     <div class="menu">
       <img src="/logo.jpg" alt="Logo GradESEI">
       <ul>
         <li><a href="main.html">Gestión de titulaciones</a></li>
         <li><a href="actos.html" class="active">Gestión de actos de graduación</a></li>
         <li><a href="aforo.html">Gestión de aforo</a></li>
+        <li><a href="documentos.html">Gestión de documentos</a></li>
       </ul>
       <a href="#" class="logout-btn">Cerrar sesión</a>
     </div>
 
-    <!-- Contenido principal -->
     <div class="admin-content">
       <h1>Gestión de actos de graduación</h1>
       <div class="actos-list">
         <div style="font-size:20px; margin-bottom:18px;">Actos actuales:</div>
-        <!-- Las filas de actos se insertan aquí por JS -->
         <a class="add-link" href="#">Añadir acto</a>
       </div>
     </div>
   </div>
 
-  <!-- Modal para editar/crear acto -->
   <div class="modal-bg" id="modal-bg">
     <div class="modal" id="modal-form">
       <form id="acto-form">

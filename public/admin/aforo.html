@@ -10,18 +10,17 @@
 </head>
 <body>
   <div class="container">
-    <!-- Menú lateral -->
     <div class="menu">
       <img src="/logo.jpg" alt="Logo GradESEI">
       <ul>
         <li><a href="main.html">Gestión de titulaciones</a></li>
         <li><a href="actos.html">Gestión de actos de graduación</a></li>
         <li><a href="aforo.html" class="active">Gestión de aforo</a></li>
+        <li><a href="documentos.html">Gestión de documentos</a></li>
       </ul>
       <a href="#" class="logout-btn">Cerrar sesión</a>
     </div>
 
-    <!-- Contenido principal -->
     <div class="admin-content">
       <h1>Gestión de aforo</h1>
       <div class="salones-list" id="salones-list"></div>
@@ -29,7 +28,6 @@
     </div>
   </div>
 
-  <!-- Modal para crear/editar salón -->
   <div class="modal-bg" id="modal-salon-bg">
     <div class="modal" id="modal-salon-form">
       <form id="salon-form">
@@ -51,7 +49,6 @@
     </div>
   </div>
 
-  <!-- Modal para crear/editar zona -->
   <div class="modal-bg" id="modal-zona-bg" style="display:none;">
     <div class="modal" id="modal-zona-form">
       <form id="zona-form">

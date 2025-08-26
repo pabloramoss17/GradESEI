@@ -41,7 +41,7 @@ form button {
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-  box-sizing: border-box; /* Añade esto */
+  box-sizing: border-box;
 }
 
 form input,
@@ -52,7 +52,7 @@ form select {
 form button {
   background-color: #28a745;
   color: white;
-  border: none; /* Esto solo afecta el color, no el tamaño, porque ya tienes border arriba */
+  border: none;
   cursor: pointer;
 }
 

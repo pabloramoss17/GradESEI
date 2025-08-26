@@ -216,72 +216,213 @@ router.post('/:salonId/repartir-invitaciones-segunda', async (req, res) => {
     );
     let aforo_libre = salon.aforo_libre;
     let nPendientes = pendientes.length;
-
-    let asignaciones = [];
+    let entregasRealizadas = 0;
     let csvs = [];
 
-    if (aforo_libre >= nPendientes && nPendientes > 0) {
-      // Reparto equitativo: 1 a cada uno
+    if (nPendientes === 0) {
+      return res.status(400).json({ error: 'No hay alumnos pendientes de recibir acompañantes' });
+    }
+
+    // FASE 1: Reparto equitativo (si hay suficiente aforo para dar 1 a cada uno)
+    if (aforo_libre >= nPendientes) {
+      // Dar 1 entrada a cada pendiente
       for (const alumno of pendientes) {
         await db.promise().query(
           `UPDATE alumnos SET acompanantes_concedidos_segunda = acompanantes_concedidos_segunda + 1 WHERE DNI = ?`,
           [alumno.DNI]
         );
-        asignaciones.push({ ...alumno, concedidos_segunda: 1 });
+        entregasRealizadas++;
       }
+      
+      aforo_libre -= nPendientes; // Actualizar aforo restante
+      
+      // FASE 2: Sortear las entradas restantes (si las hay)
+      if (aforo_libre > 0) {
+        // Recalcular pendientes después del reparto inicial
+        const pendientesParaSorteo = alumnos.filter(a => {
+          const yaRecibidas = a.acompanantes_concedidos + a.acompanantes_concedidos_segunda + 1; // +1 por la que acabamos de dar
+          return a.acompanantes_solicitados > yaRecibidas;
+        });
+
+        if (pendientesParaSorteo.length > 0) {
+          let premiados = [];
+
+          for (let entrada = 1; entrada <= aforo_libre; entrada++) {
+            // Alumnos elegibles para esta entrada: excluye los ya premiados
+            let elegibles = pendientesParaSorteo.filter(a => {
+              const yaRecibidas = a.acompanantes_concedidos + a.acompanantes_concedidos_segunda + 1;
+              // Excluir si ya fue premiado en este sorteo
+              return (yaRecibidas < a.acompanantes_solicitados) && !premiados.some(p => p.DNI === a.DNI);
+            });
+
+            if (elegibles.length === 0) break;
+
+            // Hacer 3 sorteos para esta entrada
+            let ganadorFinal = null;
+            for (let sorteo = 1; sorteo <= 3; sorteo++) {
+              elegibles = elegibles
+                .map(a => ({ ...a, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort);
+
+              const ganador = elegibles[0];
+
+              if (sorteo === 3) {
+                ganadorFinal = ganador;
+                csvs.push({ entrada, ganador });
+              }
+            }
+
+            if (ganadorFinal) {
+              premiados.push(ganadorFinal);
+            }
+          }
+
+          // Asignar entradas a los premiados del sorteo
+          for (const premiado of premiados) {
+            await db.promise().query(
+              `UPDATE alumnos SET acompanantes_concedidos_segunda = acompanantes_concedidos_segunda + 1 WHERE DNI = ?`,
+              [premiado.DNI]
+            );
+            entregasRealizadas++;
+          }
+        }
+      }
+      
       // Crear zona
       await db.promise().query(
         `INSERT INTO zonas (nombre, butacas_reservadas, salon_id) VALUES (?, ?, ?)`,
-        ['Invitaciones segunda ronda', nPendientes, salonId]
+        ['Invitaciones segunda ronda', entregasRealizadas, salonId]
       );
-    } else if (nPendientes > 0 && aforo_libre > 0) {
-      // Sorteo: repartir aforo_libre invitaciones entre los pendientes
-      let alumnosSorteo = [...pendientes];
-      let premiados = [];
-      for (let sorteo = 1; sorteo <= 3; sorteo++) {
-        alumnosSorteo = alumnosSorteo
-          .map(a => ({ ...a, sort: Math.random() }))
-          .sort((a, b) => a.sort - b.sort)
-          .slice(0, aforo_libre);
-        // CSV para este sorteo
-        const parser = new Parser({ fields: ['DNI', 'nombre', 'apellidos'] });
-        const csv = parser.parse(alumnosSorteo);
-        csvs.push({ sorteo, csv });
-        if (sorteo === 3) premiados = alumnosSorteo;
+      
+      // Actualizar aforo
+      await actualizarAforoSalonPromise(salonId);
+      
+      if (csvs.length > 0) {
+        // Hubo sorteos, generar CSV con formato correcto
+        const ganadores = csvs.map(c => c.ganador);
+        
+        // Configurar parser con codificación UTF-8 y formato correcto
+        const parser = new Parser({ 
+          fields: [
+            { label: 'DNI', value: 'DNI' },
+            { label: 'Nombre', value: 'nombre' },
+            { label: 'Apellidos', value: 'apellidos' }
+          ],
+          delimiter: ';', // Usar punto y coma para mejor compatibilidad
+          quote: '"',
+          header: true,
+          encoding: 'utf8'
+        });
+        
+        const csvContent = parser.parse(ganadores);
+        
+        // Añadir BOM UTF-8 para que Excel lo interprete correctamente
+        const csvWithBOM = '\uFEFF' + csvContent;
+        
+        // Respuesta JSON con información del reparto Y el CSV
+        res.json({
+          mensaje: `Segunda tanda repartida: ${entregasRealizadas} invitaciones asignadas.`,
+          detalle: `${nPendientes} invitaciones repartidas equitativamente, ${csvs.length} sorteadas.`,
+          repartoEquitativo: nPendientes,
+          invitacionesSorteadas: csvs.length,
+          totalAsignadas: entregasRealizadas,
+          hayCSV: true,
+          csvContent: csvWithBOM,
+          csvFilename: 'sorteo_segunda_tanda.csv'
+        });
+      } else {
+        // Solo reparto equitativo, sin CSV
+        res.json({
+          mensaje: `Segunda tanda repartida: ${entregasRealizadas} invitaciones asignadas sin sorteo.`,
+          detalle: `Se repartió 1 invitación a cada uno de los ${nPendientes} alumnos pendientes.`,
+          repartoEquitativo: nPendientes,
+          invitacionesSorteadas: 0,
+          totalAsignadas: entregasRealizadas,
+          hayCSV: false
+        });
       }
-      // Asignar SOLO a los del tercer sorteo si cumplen la condición
-      let asignados = 0;
-      for (const alumno of premiados) {
-        // Chequea que no supere lo solicitado
-        const a = alumnos.find(x => x.DNI === alumno.DNI);
-        if (a && (a.acompanantes_solicitados >= (a.acompanantes_concedidos + a.acompanantes_concedidos_segunda + 1))) {
-          await db.promise().query(
-            `UPDATE alumnos SET acompanantes_concedidos_segunda = acompanantes_concedidos_segunda + 1 WHERE DNI = ?`,
-            [alumno.DNI]
-          );
-          asignados++;
+      
+    } else {
+      // CASO: No hay suficiente aforo ni para dar 1 a cada uno - Solo sorteo
+      let premiados = [];
+      
+      for (let entrada = 1; entrada <= aforo_libre; entrada++) {
+        // Excluir los ya premiados
+        let elegibles = pendientes.filter(a => {
+          let yaVaARecibir = premiados.some(p => p.DNI === a.DNI);
+          return (a.acompanantes_concedidos + a.acompanantes_concedidos_segunda < a.acompanantes_solicitados) && !yaVaARecibir;
+        });
+
+        if (elegibles.length === 0) break;
+
+        // Hacer 3 sorteos para esta entrada
+        let ganadorFinal = null;
+        for (let sorteo = 1; sorteo <= 3; sorteo++) {
+          elegibles = elegibles
+            .map(a => ({ ...a, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort);
+
+          const ganador = elegibles[0];
+
+          if (sorteo === 3) {
+            ganadorFinal = ganador;
+            csvs.push({ entrada, ganador });
+          }
+        }
+
+        if (ganadorFinal) {
+          premiados.push(ganadorFinal);
         }
       }
+      
+      // Asignar entradas a los premiados
+      for (const premiado of premiados) {
+        await db.promise().query(
+          `UPDATE alumnos SET acompanantes_concedidos_segunda = acompanantes_concedidos_segunda + 1 WHERE DNI = ?`,
+          [premiado.DNI]
+        );
+        entregasRealizadas++;
+      }
+      
+      // Crear zona
       await db.promise().query(
         `INSERT INTO zonas (nombre, butacas_reservadas, salon_id) VALUES (?, ?, ?)`,
-        ['Invitaciones segunda ronda', asignados, salonId]
+        ['Invitaciones segunda ronda', entregasRealizadas, salonId]
       );
-    } else {
-      return res.status(400).json({ error: 'No hay aforo suficiente para repartir la segunda tanda' });
+      
+      // Actualizar aforo
+      await actualizarAforoSalonPromise(salonId);
+      
+      // Generar CSV con formato correcto
+      const ganadores = csvs.map(c => c.ganador);
+      
+      const parser = new Parser({ 
+        fields: [
+          { label: 'DNI', value: 'DNI' },
+          { label: 'Nombre', value: 'nombre' },
+          { label: 'Apellidos', value: 'apellidos' }
+        ],
+        delimiter: ';',
+        quote: '"',
+        header: true,
+        encoding: 'utf8'
+      });
+      
+      const csvContent = parser.parse(ganadores);
+      const csvWithBOM = '\uFEFF' + csvContent;
+      
+      // Respuesta JSON con información del sorteo Y el CSV
+      res.json({
+        mensaje: `Segunda tanda repartida: ${entregasRealizadas} invitaciones asignadas por sorteo.`,
+        detalle: `No había suficiente aforo para reparto equitativo. Se sortearon ${aforo_libre} invitaciones entre ${nPendientes} alumnos pendientes.`,
+        repartoEquitativo: 0,
+        invitacionesSorteadas: entregasRealizadas,
+        totalAsignadas: entregasRealizadas,
+        hayCSV: true,
+        csvContent: csvWithBOM,
+        csvFilename: 'sorteo_segunda_tanda.csv'
+      });
     }
-
-    // Actualizar aforo
-    await actualizarAforoSalonPromise(salonId);
-
-    // Unir los CSVs en uno solo
-    let csvFinal = '';
-    csvs.forEach(({ sorteo, csv }) => {
-      csvFinal += `SORTEO ${sorteo}\n${csv}\n\n`;
-    });
-
-    res.setHeader('Content-Disposition', 'attachment; filename="sorteo_invitaciones.csv"');
-    res.setHeader('Content-Type', 'text/csv');
-    res.send(csvFinal);
 
   } catch (err) {
     console.error(err);

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('/api/alumnos/info', {
         method: 'GET',
         headers: {
-          'Authorization': getToken(), // <-- SIEMPRE lee el token actualizado
+          'Authorization': getToken(), // SIEMPRE lee el token actualizado
         },
       })
       .then(response => response.json())

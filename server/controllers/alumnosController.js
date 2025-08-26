@@ -240,4 +240,36 @@ router.post('/reset', (req, res) => {
   });
 });
 
+// Obtener alumnos por titulación
+router.get('/por-titulacion/:id', (req, res) => {
+  const titulacionId = req.params.id;
+  db.query('SELECT DNI, nombre, apellidos, correo, telefono, acompanantes_solicitados FROM alumnos WHERE titulacion_id = ?', [titulacionId], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error interno del servidor' });
+    res.json(results);
+  });
+});
+
+// Modificar alumno por DNI (solo admin)
+router.put('/:dni', (req, res) => {
+  const dni = req.params.dni;
+  const { nombre, apellidos, correo, telefono, acompanantes_solicitados } = req.body;
+  db.query(
+    'UPDATE alumnos SET nombre = ?, apellidos = ?, correo = ?, telefono = ?, acompanantes_solicitados = ? WHERE DNI = ?',
+    [nombre, apellidos, correo, telefono, acompanantes_solicitados, dni],
+    (err) => {
+      if (err) return res.status(500).json({ error: 'Error interno' });
+      res.json({ mensaje: 'Alumno actualizado correctamente' });
+    }
+  );
+});
+
+// Eliminar alumno por DNI (solo admin)
+router.delete('/:dni', (req, res) => {
+  const dni = req.params.dni;
+  db.query('DELETE FROM alumnos WHERE DNI = ?', [dni], (err) => {
+    if (err) return res.status(500).json({ error: 'Error interno' });
+    res.json({ mensaje: 'Alumno eliminado correctamente' });
+  });
+});
+
 module.exports = router;

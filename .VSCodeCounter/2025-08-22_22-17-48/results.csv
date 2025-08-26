@@ -1,0 +1,54 @@
+"filename", "language", "JavaScript", "MS SQL", "JSON", "Markdown", "PostCSS", "HTML", "comment", "blank", "total"
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\README.md", "Markdown", 0, 0, 0, 97, 0, 0, 0, 35, 132
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\db\init.sql", "MS SQL", 0, 69, 0, 0, 0, 0, 0, 13, 82
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\db\insert.sql", "MS SQL", 0, 33, 0, 0, 0, 0, 7, 8, 48
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\db\reset.sql", "MS SQL", 0, 12, 0, 0, 0, 0, 2, 3, 17
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\db\show.sql", "MS SQL", 0, 7, 0, 0, 0, 0, 0, 2, 9
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\package-lock.json", "JSON", 0, 0, 3527, 0, 0, 0, 0, 1, 3528
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\package.json", "JSON", 0, 0, 29, 0, 0, 0, 0, 1, 30
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\actos.html", "HTML", 0, 0, 0, 0, 0, 57, 4, 6, 67
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\aforo.html", "HTML", 0, 0, 0, 0, 0, 62, 4, 9, 75
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\documentos.html", "HTML", 0, 0, 0, 0, 0, 30, 0, 0, 30
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\login.html", "HTML", 0, 0, 0, 0, 0, 23, 0, 0, 23
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\main.html", "HTML", 0, 0, 0, 0, 0, 38, 4, 2, 44
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\recuperar.html", "HTML", 0, 0, 0, 0, 0, 21, 0, 0, 21
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\infoActo.html", "HTML", 0, 0, 0, 0, 0, 51, 2, 1, 54
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\login.html", "HTML", 0, 0, 0, 0, 0, 24, 0, 1, 25
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\main.html", "HTML", 0, 0, 0, 0, 0, 59, 2, 2, 63
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\modDatos.html", "HTML", 0, 0, 0, 0, 0, 33, 0, 9, 42
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\recuperar.html", "HTML", 0, 0, 0, 0, 0, 21, 0, 0, 21
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\registro.html", "HTML", 0, 0, 0, 0, 0, 31, 0, 1, 32
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\reset.html", "HTML", 0, 0, 0, 0, 0, 21, 0, 0, 21
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminActos.css", "PostCSS", 0, 0, 0, 0, 151, 0, 2, 21, 174
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminAforo.css", "PostCSS", 0, 0, 0, 0, 183, 0, 0, 26, 209
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminMain.css", "PostCSS", 0, 0, 0, 0, 233, 0, 3, 35, 271
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\index.css", "PostCSS", 0, 0, 0, 0, 44, 0, 0, 8, 52
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\infoActo.css", "PostCSS", 0, 0, 0, 0, 36, 0, 0, 6, 42
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\login.css", "PostCSS", 0, 0, 0, 0, 61, 0, 0, 10, 71
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\main.css", "PostCSS", 0, 0, 0, 0, 124, 0, 4, 22, 150
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\modDatos.css", "PostCSS", 0, 0, 0, 0, 76, 0, 0, 11, 87
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\registro.css", "PostCSS", 0, 0, 0, 0, 61, 0, 0, 11, 72
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\index.html", "HTML", 0, 0, 0, 0, 0, 18, 0, 1, 19
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminActos.js", "JavaScript", 208, 0, 0, 0, 0, 0, 21, 21, 250
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminAforo.js", "JavaScript", 375, 0, 0, 0, 0, 0, 41, 47, 463
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminDocumentos.js", "JavaScript", 91, 0, 0, 0, 0, 0, 6, 11, 108
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminLogin.js", "JavaScript", 24, 0, 0, 0, 0, 0, 0, 1, 25
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminMain.js", "JavaScript", 284, 0, 0, 0, 0, 0, 17, 26, 327
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminRecuperar.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 0, 20
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\alumnoLogin.js", "JavaScript", 26, 0, 0, 0, 0, 0, 2, 7, 35
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\infoActo.js", "JavaScript", 52, 0, 0, 0, 0, 0, 7, 10, 69
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\main.js", "JavaScript", 49, 0, 0, 0, 0, 0, 5, 4, 58
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\modDatos.js", "JavaScript", 105, 0, 0, 0, 0, 0, 10, 11, 126
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\recuperar.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 0, 20
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\registroAlumno.js", "JavaScript", 94, 0, 0, 0, 0, 0, 6, 15, 115
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\reset.js", "JavaScript", 32, 0, 0, 0, 0, 0, 1, 3, 36
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\adminController.js", "JavaScript", 57, 0, 0, 0, 0, 0, 1, 13, 71
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\alumnosController.js", "JavaScript", 208, 0, 0, 0, 0, 0, 19, 49, 276
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\documentosController.js", "JavaScript", 71, 0, 0, 0, 0, 0, 8, 10, 89
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\graduacionesController.js", "JavaScript", 171, 0, 0, 0, 0, 0, 15, 10, 196
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\salonesController.js", "JavaScript", 360, 0, 0, 0, 0, 0, 48, 58, 466
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\titulacionesController.js", "JavaScript", 67, 0, 0, 0, 0, 0, 5, 7, 79
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\zonasController.js", "JavaScript", 125, 0, 0, 0, 0, 0, 10, 8, 143
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\db.js", "JavaScript", 15, 0, 0, 0, 0, 0, 0, 3, 18
+"c:\Users\pablo\OneDrive\Escritorio\gradesei\server\server.js", "JavaScript", 32, 0, 0, 0, 0, 0, 5, 8, 45
+"Total", "-", 2486, 121, 3556, 97, 969, 489, 261, 567, 8546

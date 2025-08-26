@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('acompanantes').value = data.alumno.acompanantes_solicitados;
       document.getElementById('titulacion').value = data.alumno.titulacion_id;
 
-      // --- NUEVO: Consulta la titulación para obtener graduacion_id ---
+      // Consulta la titulación para obtener graduacion_id
       const resTitulacion = await fetch(`/api/titulaciones/${data.alumno.titulacion_id}`);
       const datosTitulacion = await resTitulacion.json();
       const graduacion_id = datosTitulacion.graduacion_id;

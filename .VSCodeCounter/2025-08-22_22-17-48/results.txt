@@ -1,0 +1,92 @@
+Date : 2025-08-22 22:17:48
+Directory : c:\Users\pablo\OneDrive\Escritorio\gradesei
+Total : 52 files,  7718 codes, 261 comments, 567 blanks, all 8546 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |      3,556 |          0 |          2 |      3,558 |
+| JavaScript |         22 |      2,486 |        227 |        322 |      3,035 |
+| PostCSS    |          9 |        969 |          9 |        150 |      1,128 |
+| HTML       |         14 |        489 |         16 |         32 |        537 |
+| MS SQL     |          4 |        121 |          9 |         26 |        156 |
+| Markdown   |          1 |         97 |          0 |         35 |        132 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                     | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                        |         52 |      7,718 |        261 |        567 |      8,546 |
+| . (Files)                                                                                |          3 |      3,653 |          0 |         37 |      3,690 |
+| db                                                                                       |          4 |        121 |          9 |         26 |        156 |
+| public                                                                                   |         36 |      2,838 |        141 |        338 |      3,317 |
+| public (Files)                                                                           |          1 |         18 |          0 |          1 |         19 |
+| public\admin                                                                             |          6 |        231 |         12 |         17 |        260 |
+| public\alumno                                                                            |          7 |        240 |          4 |         14 |        258 |
+| public\css                                                                               |          9 |        969 |          9 |        150 |      1,128 |
+| public\js                                                                                |         13 |      1,380 |        116 |        156 |      1,652 |
+| server                                                                                   |          9 |      1,106 |        111 |        166 |      1,383 |
+| server (Files)                                                                           |          2 |         47 |          5 |         11 |         63 |
+| server\controllers                                                                       |          7 |      1,059 |        106 |        155 |      1,320 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                 | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\README.md                                    | Markdown   |         97 |          0 |         35 |        132 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\db\init.sql                                  | MS SQL     |         69 |          0 |         13 |         82 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\db\insert.sql                                | MS SQL     |         33 |          7 |          8 |         48 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\db\reset.sql                                 | MS SQL     |         12 |          2 |          3 |         17 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\db\show.sql                                  | MS SQL     |          7 |          0 |          2 |          9 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\package-lock.json                            | JSON       |      3,527 |          0 |          1 |      3,528 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\package.json                                 | JSON       |         29 |          0 |          1 |         30 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\actos.html                      | HTML       |         57 |          4 |          6 |         67 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\aforo.html                      | HTML       |         62 |          4 |          9 |         75 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\documentos.html                 | HTML       |         30 |          0 |          0 |         30 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\login.html                      | HTML       |         23 |          0 |          0 |         23 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\main.html                       | HTML       |         38 |          4 |          2 |         44 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\admin\recuperar.html                  | HTML       |         21 |          0 |          0 |         21 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\infoActo.html                  | HTML       |         51 |          2 |          1 |         54 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\login.html                     | HTML       |         24 |          0 |          1 |         25 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\main.html                      | HTML       |         59 |          2 |          2 |         63 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\modDatos.html                  | HTML       |         33 |          0 |          9 |         42 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\recuperar.html                 | HTML       |         21 |          0 |          0 |         21 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\registro.html                  | HTML       |         31 |          0 |          1 |         32 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\alumno\reset.html                     | HTML       |         21 |          0 |          0 |         21 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminActos.css                    | PostCSS    |        151 |          2 |         21 |        174 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminAforo.css                    | PostCSS    |        183 |          0 |         26 |        209 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\adminMain.css                     | PostCSS    |        233 |          3 |         35 |        271 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\index.css                         | PostCSS    |         44 |          0 |          8 |         52 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\infoActo.css                      | PostCSS    |         36 |          0 |          6 |         42 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\login.css                         | PostCSS    |         61 |          0 |         10 |         71 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\main.css                          | PostCSS    |        124 |          4 |         22 |        150 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\modDatos.css                      | PostCSS    |         76 |          0 |         11 |         87 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\css\registro.css                      | PostCSS    |         61 |          0 |         11 |         72 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\index.html                            | HTML       |         18 |          0 |          1 |         19 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminActos.js                      | JavaScript |        208 |         21 |         21 |        250 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminAforo.js                      | JavaScript |        375 |         41 |         47 |        463 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminDocumentos.js                 | JavaScript |         91 |          6 |         11 |        108 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminLogin.js                      | JavaScript |         24 |          0 |          1 |         25 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminMain.js                       | JavaScript |        284 |         17 |         26 |        327 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\adminRecuperar.js                  | JavaScript |         20 |          0 |          0 |         20 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\alumnoLogin.js                     | JavaScript |         26 |          2 |          7 |         35 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\infoActo.js                        | JavaScript |         52 |          7 |         10 |         69 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\main.js                            | JavaScript |         49 |          5 |          4 |         58 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\modDatos.js                        | JavaScript |        105 |         10 |         11 |        126 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\recuperar.js                       | JavaScript |         20 |          0 |          0 |         20 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\registroAlumno.js                  | JavaScript |         94 |          6 |         15 |        115 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\public\js\reset.js                           | JavaScript |         32 |          1 |          3 |         36 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\adminController.js        | JavaScript |         57 |          1 |         13 |         71 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\alumnosController.js      | JavaScript |        208 |         19 |         49 |        276 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\documentosController.js   | JavaScript |         71 |          8 |         10 |         89 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\graduacionesController.js | JavaScript |        171 |         15 |         10 |        196 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\salonesController.js      | JavaScript |        360 |         48 |         58 |        466 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\titulacionesController.js | JavaScript |         67 |          5 |          7 |         79 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\controllers\zonasController.js        | JavaScript |        125 |         10 |          8 |        143 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\db.js                                 | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\pablo\OneDrive\Escritorio\gradesei\server\server.js                             | JavaScript |         32 |          5 |          8 |         45 |
+| Total                                                                                    |            |      7,718 |        261 |        567 |      8,546 |
++------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

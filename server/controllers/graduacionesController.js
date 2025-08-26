@@ -184,4 +184,12 @@ router.get('/:id/alumnos/count', (req, res) => {
   );
 });
 
+// Obtener todas las graduaciones (ID y nombre) ordenadas por fecha
+router.get('/all', (req, res) => {
+  db.query('SELECT id, nombre FROM graduaciones ORDER BY fecha DESC', (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error interno' });
+    res.json(results);
+  });
+});
+
 module.exports = router;

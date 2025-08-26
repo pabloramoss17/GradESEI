@@ -105,10 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
 
+          // Botón gestionar alumnos
+          const alumnosBtn = document.createElement('button');
+          alumnosBtn.className = 'icon-btn';
+          alumnosBtn.title = 'Gestionar alumnos';
+          alumnosBtn.innerHTML = '&#128101;'; // icono de grupo/personas
+
+          alumnosBtn.addEventListener('click', async () => {
+            await mostrarAlumnosTitulacion(titulacion.id, titulacion.nombre);
+          });
+
           row.appendChild(inputNombre);
           row.appendChild(inputSiglas);
           row.appendChild(editBtn);
           row.appendChild(deleteBtn);
+          row.appendChild(alumnosBtn);
 
           // Inserta antes del enlace de añadir titulación
           const addLink = lista.querySelector('.add-link');
@@ -173,4 +184,144 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Error al conectar con el servidor');
     }
   });
+
+  async function mostrarAlumnosTitulacion(titulacionId, titulacionNombre) {
+    // Crea el modal o panel
+    let modal = document.getElementById('alumnos-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'alumnos-modal';
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100vw';
+      modal.style.height = '100vh';
+      modal.style.background = 'rgba(0,0,0,0.4)';
+      modal.style.zIndex = '9999';
+      modal.style.display = 'flex';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
+
+      const content = document.createElement('div');
+      content.id = 'alumnos-modal-content';
+      modal.appendChild(content);
+      document.body.appendChild(modal);
+    }
+
+    const content = modal.querySelector('#alumnos-modal-content');
+    content.innerHTML = `
+      <h2 style="margin-bottom:18px; margin-left:8px;">Alumnos de ${titulacionNombre}</h2>
+      <div id="alumnos-list"></div>
+      <button id="cerrar-modal-alumnos" style="margin-left:8px;">Cerrar</button>
+    `;
+
+    // Cerrar modal
+    content.querySelector('#cerrar-modal-alumnos').onclick = () => modal.remove();
+
+    // Cargar alumnos
+    const res = await fetch(`/api/alumnos/por-titulacion/${titulacionId}`, {
+      headers: { 'Authorization': localStorage.getItem('adminToken') }
+    });
+    const alumnos = await res.json();
+    const lista = content.querySelector('#alumnos-list');
+    lista.innerHTML = '';
+
+    // Estructura de columnas
+    const columnas = [
+      { label: 'DNI', campo: 'DNI', class: 'col-dni' },
+      { label: 'Nombre', campo: 'nombre', class: 'col-nombre' },
+      { label: 'Apellidos', campo: 'apellidos', class: 'col-apellidos' },
+      { label: 'Correo', campo: 'correo', class: 'col-correo' },
+      { label: 'Teléfono', campo: 'telefono', class: 'col-telefono' },
+      { label: 'Acomp. solicitados', campo: 'acompanantes_solicitados', class: 'col-acompanantes' },
+      { label: '', campo: 'guardar', class: 'col-guardar' },
+      { label: '', campo: 'eliminar', class: 'col-eliminar' }
+    ];
+
+    // Encabezado alineado con los datos
+    const headerRow = document.createElement('div');
+    headerRow.className = 'alumnos-header-row';
+    columnas.forEach(col => {
+      if (col.campo === 'guardar' || col.campo === 'eliminar') {
+        const btn = document.createElement('button');
+        btn.disabled = true;
+        btn.className = col.class;
+        headerRow.appendChild(btn);
+      } else {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = col.label;
+        input.disabled = true;
+        input.className = col.class;
+        headerRow.appendChild(input);
+      }
+    });
+    lista.appendChild(headerRow);
+
+    // Filas de alumnos
+    if (!alumnos.length) {
+      lista.innerHTML += '<div>No hay alumnos inscritos en esta titulación.</div>';
+      return;
+    }
+
+    alumnos.forEach(alumno => {
+      const row = document.createElement('div');
+      row.className = 'alumnos-row';
+      columnas.forEach(col => {
+        if (col.campo === 'guardar') {
+          const saveBtn = document.createElement('button');
+          saveBtn.className = `icon-btn ${col.class}`;
+          saveBtn.title = 'Guardar cambios';
+          saveBtn.innerHTML = '&#128190;';
+          saveBtn.onclick = async () => {
+            const campos = row.querySelectorAll('input');
+            const datos = {};
+            campos.forEach(inp => datos[inp.dataset.campo] = inp.value);
+            const res = await fetch(`/api/alumnos/${alumno.DNI}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('adminToken')
+              },
+              body: JSON.stringify(datos)
+            });
+            if (res.ok) {
+              alert('Alumno actualizado');
+            } else {
+              alert('Error al actualizar alumno');
+            }
+          };
+          row.appendChild(saveBtn);
+        } else if (col.campo === 'eliminar') {
+          const deleteBtn = document.createElement('button');
+          deleteBtn.className = `icon-btn ${col.class}`;
+          deleteBtn.title = 'Eliminar alumno';
+          deleteBtn.innerHTML = '&#128465;';
+          deleteBtn.onclick = async () => {
+            if (confirm('¿Seguro que quieres eliminar este alumno?')) {
+              const res = await fetch(`/api/alumnos/${alumno.DNI}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': localStorage.getItem('adminToken') }
+              });
+              if (res.ok) {
+                row.remove();
+              } else {
+                alert('Error al eliminar alumno');
+              }
+            }
+          };
+          row.appendChild(deleteBtn);
+        } else {
+          const input = document.createElement('input');
+          input.type = col.campo === 'acompanantes_solicitados' ? 'number' : 'text';
+          input.value = alumno[col.campo];
+          input.disabled = col.campo === 'DNI';
+          input.className = `alumno-info ${col.class}`;
+          input.dataset.campo = col.campo;
+          row.appendChild(input);
+        }
+      });
+      lista.appendChild(row);
+    });
+  }
 });

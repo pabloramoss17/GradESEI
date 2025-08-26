@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registroForm");
 
-  // 🔁 Cargar titulaciones en el <select>
+  // Cargar titulaciones en el <select>
   fetch('/api/titulaciones')
     .then(response => response.json())
     .then(data => {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("No se pudieron cargar las titulaciones");
     });
 
-  // 📝 Lógica de registro
+  // Lógica de registro
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // --- NUEVO: Comprobar registro_bloqueado en la graduación antes de registrar ---
     try {
       // 1. Obtener la titulación
       const resTitulacion = await fetch(`/api/titulaciones/${titulacion}`);

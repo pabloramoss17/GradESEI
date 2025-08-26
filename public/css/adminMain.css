@@ -1,5 +1,3 @@
-/* Usa main.css para la base y añade solo lo específico aquí */
-
 .admin-content {
   flex: 1;
   display: flex;
@@ -7,7 +5,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 40px;
-  overflow: hidden; /* Evita doble scroll */
+  overflow: hidden;
   height: 100vh;
 }
 
@@ -22,11 +20,11 @@
   max-width: 600px;
   margin: 0 auto 30px auto;
   overflow-y: auto;
-  max-height: 70vh; /* Ajusta según tu preferencia */
+  max-height: 70vh; 
 }
 
 .titulaciones-list {
-  max-width: 500px;
+  max-width: 800px; 
 }
 
 .titulacion-row {
@@ -43,7 +41,7 @@
   background: #f4f4f4;
   font-size: 18px;
   margin-right: 16px;
-  min-width: 0;
+  min-width: 200px; 
 }
 
 .titulacion-row input.titulacion-info:last-of-type {
@@ -66,19 +64,18 @@
 
 .add-link {
   color: #007bff;
-  text-decoration: none;      /* Elimina el subrayado */
+  text-decoration: none;   
   cursor: pointer;
   font-size: 16px;
   margin-top: 10px;
-  display: block;             /* Ocupa toda la línea */
-  text-align: center;         /* Centra el texto */
+  display: block;             
+  text-align: center;         
 }
 
 .add-link:hover {
   color: #0056b3;
 }
 
-/* Menú lateral admin: logo más grande y botones más anchos */
 .menu img {
   width: 160px;
   margin-bottom: 30px;
@@ -93,7 +90,6 @@
   font-size: 16px;
 }
 
-/* Panel lateral fijo */
 .menu {
   position: fixed;
   left: 0;
@@ -109,7 +105,6 @@
   align-items: center;
 }
 
-/* Ajusta el contenido principal para dejar espacio al menú */
 .container {
   margin-left: 260px;
   min-height: 100vh;
@@ -121,3 +116,195 @@
   align-items: center;
   gap: 8px;
 }
+
+.alumno-info {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  margin-right: 6px;
+}
+
+#alumnos-modal-content {
+  background: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  width: fit-content;      
+  min-width: 400px;     
+  max-width: 98vw; 
+  max-height: 80vh;
+  height: auto;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+#alumnos-list {
+  margin-left: 8px;
+  margin-right: 8px;
+  overflow-x: auto;
+}
+
+.alumnos-header-row,
+.alumnos-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.alumnos-header-row input,
+.alumnos-header-row button {
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  height: 32px;
+  padding: 0 8px;
+}
+
+.alumnos-row input {
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  margin-right: 0;
+  height: 32px;
+}
+
+.alumnos-row button {
+  width: 48px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #222;
+  transition: color 0.2s;
+}
+
+.alumnos-row button:hover {
+  color: #007bff;
+}
+
+.col-dni { min-width: 120px; max-width: 120px; }
+.col-nombre { min-width: 160px; max-width: 160px; }
+.col-apellidos { min-width: 160px; max-width: 160px; }
+.col-correo { min-width: 220px; max-width: 220px; }
+.col-telefono { min-width: 120px; max-width: 120px; }
+.col-acompanantes { min-width: 140px; max-width: 140px; }
+.col-guardar, .col-eliminar { min-width: 48px; max-width: 48px; }
+
+#alumnos-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.actos-list {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.acto-box {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 18px 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acto-titulo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.doc-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.doc-row label {
+  font-size: 17px;
+  min-width: 120px;
+}
+
+.doc-row .icon-btn {
+  font-size: 22px;
+  margin-left: 0;
+}
+
+input[type="file"] {
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+.doc-status {
+  font-size: 18px;
+  color: #007bff;
+  margin-left: 8px;
+}
+
+.doc-status.ok {
+  color: #28a745;
+}
+
+.doc-status.err {
+  color: #dc3545;
+}
+
+.documentos-page .actos-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.documentos-page .acto-box {
+  width: 95%;
+  max-width: 1200px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+.documentos-page .doc-row {
+  display: grid;
+  grid-template-columns: 150px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  background: #f7f7f7;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .documentos-page .doc-row {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+

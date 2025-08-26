@@ -47,6 +47,7 @@ CREATE TABLE alumnos (
     titulacion_id INT NOT NULL,
     acompanantes_solicitados INT DEFAULT 0,
     acompanantes_concedidos INT DEFAULT 0,
+    acompanantes_concedidos_segunda INT DEFAULT 0,
     reset_token VARCHAR(100) NULL,
     reset_expires BIGINT NULL,
     FOREIGN KEY (titulacion_id) REFERENCES titulaciones(id)

@@ -243,17 +243,18 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: { 'Authorization': localStorage.getItem('adminToken') }
           });
+          
           if (res.ok) {
-            // Descarga el CSV si lo devuelve
-            const blob = await res.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `sorteo_invitaciones_${salon.nombre.replace(/\s/g, '_')}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url);
+            const data = await res.json(); // Ahora siempre devuelve JSON
+            
+            // Mostrar mensaje del reparto
+            alert(data.mensaje);
+            
+            // Si hay CSV, descargarlo
+            if (data.hayCSV) {
+              descargarCSV(data.csvContent, data.csvFilename);
+            }
+            
             cargarSalones();
           } else {
             const data = await res.json();
@@ -302,14 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
       row.querySelector('.salon-header b').textContent ===
       document.querySelector('.salon-header b').textContent
     );
-    // Mejor: usa la variable de salones cargados en memoria si la tienes
-    // Aquí usamos la última lista cargada:
     const salonObj = window.__salonesCargados?.find(s => s.id === currentSalonId);
-
-    // Si tienes la variable salones en memoria, úsala:
-    // if (salonObj) { ... }
-
-    // Si no, pide los datos del salón al backend:
+    //Pide los datos del salón al backend:
     let aforo_total = 0, aforo_ocupado = 0;
     if (salonObj) {
       aforo_total = salonObj.aforo_total;
@@ -440,3 +435,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cargarSalones();
 });
+
+// Función para descargar CSV
+function descargarCSV(csvContent, filename) {
+  const blob = new Blob([csvContent], { 
+    type: 'text/csv;charset=utf-8;' 
+  });
+  
+  const link = document.createElement('a');
+  if (link.download !== undefined) {
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+}

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 40px;
-  overflow: hidden; /* Evita doble scroll */
+  overflow: hidden;
   height: 100vh;
 }
 
@@ -14,7 +14,7 @@
   max-width: 600px;
   margin: 0 auto 30px auto;
   overflow-y: auto;
-  max-height: 70vh; /* Ajusta según tu preferencia */
+  max-height: 70vh;
 }
 
 .acto-row {
@@ -145,7 +145,6 @@
   transform: scale(1.2);
 }
 
-/* Panel lateral fijo */
 .menu {
   position: fixed;
   left: 0;
@@ -161,7 +160,6 @@
   align-items: center;
 }
 
-/* Ajusta el contenido principal para dejar espacio al menú */
 .container {
   margin-left: 260px;
   min-height: 100vh;
