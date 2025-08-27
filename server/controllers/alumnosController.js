@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
 
       // Crear un JWT usando el DNI del alumno
       const token = jwt.sign(
-        { alumnoId: results[0].DNI }, 
+        { alumnoId: results[0].DNI },
         'mi_clave_secreta',
         { expiresIn: '1h' }
       );
@@ -190,13 +190,15 @@ router.post('/recuperar', (req, res) => {
 
       // Enviar email con enlace
       const transporter = nodemailer.createTransport({
-        // Configura tu SMTP real aquí
-        service: 'gmail',
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        secure: process.env.SMTP_SECURE === 'true', // true si usas 465
         auth: {
-          user: 'pabloramos1703@gmail.com',
-          pass: 'knky qoyp akuj ttro'
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
         }
       });
+
 
       const resetUrl = `http://localhost:3000/alumno/reset.html?token=${token}`;
       const mailOptions = {
