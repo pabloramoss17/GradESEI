@@ -22,10 +22,14 @@ const salonesRoutes = require('./controllers/salonesController');
 const zonasRoutes = require('./controllers/zonasController');
 const documentosController = require('./controllers/documentosController');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
-app.use(cors());
+const allowed = (process.env.ALLOWED_ORIGINS || '').split(',').map(o => o.trim());
+app.use(cors({
+  origin: allowed.length ? allowed : true,
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
