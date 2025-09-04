@@ -10,20 +10,20 @@ VALUES (
 
 -- Insertar salón vinculado a la graduación
 INSERT INTO salones (
-    nombre, aforo_total, fecha_acto, graduacion_id
+    nombre, aforo_total, aforo_libre, aforo_ocupado, fecha_acto, graduacion_id
 )
 VALUES (
-    'Auditorio ESEI', 300, '2025-06-30', 1
+    'Auditorio ESEI', 300, 300, 0, '2025-06-30', 1
 );
 
 -- Insertar zonas dentro del salón
 INSERT INTO zonas (
-    nombre, butacas_totales, butacas_libres, butacas_ocupadas, salon_id
+    nombre, butacas_reservadas, salon_id
 )
 VALUES
-('Zona A', 100, 100, 0, 1),
-('Zona B', 100, 100, 0, 1),
-('Zona C', 100, 100, 0, 1);
+('Zona A', 100, 1),
+('Zona B', 100, 1),
+('Zona C', 100, 1);
 
 -- Insertar titulación asociada a la graduación
 INSERT INTO titulaciones (nombre, siglas, graduacion_id)
@@ -33,14 +33,14 @@ VALUES ('Enxeñaría Informática', 'EI', 1);
 -- Contraseña ya encriptada (hash de "Contrasena123")
 INSERT INTO alumnos (
     DNI, nombre, apellidos, correo, telefono, contrasena, titulacion_id,
-    acompanantes_solicitados, acompanantes_concedidos
+    acompanantes_solicitados, acompanantes_concedidos, acompanantes_concedidos_segunda
 )
 VALUES
 ('12345678A', 'Ana', 'Pérez', 'ana.perez@uvigo.gal', '600000001',
- '$2a$10$Uvhd05Am0XRSbZjeDxoYQOC5KhMiF7GvFZK4vFoMFj/UsECZyL84W', 1, 2, 1),
+ '$2a$10$Uvhd05Am0XRSbZjeDxoYQOC5KhMiF7GvFZK4vFoMFj/UsECZyL84W', 1, 2, 1, 0),
 
 ('87654321B', 'Luis', 'Gómez', 'luis.gomez@esei.uvigo.es', '600000002',
- '$2a$10$Uvhd05Am0XRSbZjeDxoYQOC5KhMiF7GvFZK4vFoMFj/UsECZyL84W', 1, 1, 0);
+ '$2a$10$Uvhd05Am0XRSbZjeDxoYQOC5KhMiF7GvFZK4vFoMFj/UsECZyL84W', 1, 1, 0, 0);
 
 -- Insertar administrador
 INSERT INTO administradores (login, correo, password)
